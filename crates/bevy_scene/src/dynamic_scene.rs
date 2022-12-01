@@ -1,11 +1,7 @@
 use crate::{serde::SceneSerializer, DynamicSceneBuilder, Scene, SceneSpawnError};
 use anyhow::Result;
 use bevy_app::AppTypeRegistry;
-use bevy_ecs::{
-    entity::EntityMap,
-    reflect::{ReflectComponent, ReflectMapEntities},
-    world::World,
-};
+use bevy_ecs::{entity::EntityMap, reflect::ReflectComponent, world::World};
 use bevy_reflect::{Reflect, TypeRegistryArc, TypeUuid};
 use serde::Serialize;
 
@@ -89,13 +85,15 @@ impl DynamicScene {
             }
         }
 
-        for registration in type_registry.iter() {
-            if let Some(map_entities_reflect) = registration.data::<ReflectMapEntities>() {
-                map_entities_reflect
-                    .map_entities(world, entity_map)
-                    .unwrap();
-            }
-        }
+        /*
+         *for registration in type_registry.iter() {
+         *    if let Some(map_entities_reflect) = registration.data::<ReflectMapEntities>() {
+         *        map_entities_reflect
+         *            .map_entities(world, entity_map)
+         *            .unwrap();
+         *    }
+         *}
+         */
 
         Ok(())
     }
